@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   Entitlements.plist
+   PuristIt
+
+   Created by Ravinder Namboori on 24/11/16.
+   Copyright (c) 2016 PuristSoft Corp. All rights reserved.
+-->
+<plist version="1.0">
+    <dict>
+        <key>aps-environment</key>
+        <string>production</string> <!-- Either development or production -->
+    </dict>
+</plist>

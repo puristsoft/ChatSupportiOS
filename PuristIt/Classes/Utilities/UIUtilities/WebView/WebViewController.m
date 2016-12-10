@@ -12,6 +12,7 @@
 @interface WebViewController ()
 
 @property (nonatomic, retain) MBProgressHUD *HUD;
+//@property (nonatomic, assign) BOOL loadingFileExplorer;
 
 @end
 
@@ -101,6 +102,7 @@
 {
     PU_METHOD_LOG
     [super viewDidLoad];
+    
     self.webView.frame = self.view.bounds;
     self.webView.autoresizingMask = self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.webView.opaque = YES;
@@ -108,6 +110,12 @@
     [self.view addSubview:self.webView];
     
     self.view.backgroundColor = self.webView.backgroundColor = [UIColor whiteColor];
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    PU_METHOD_LOG
+    [super viewDidAppear:animated];
 }
 
 - (BOOL)weWerePushed
@@ -184,5 +192,46 @@
     [self stopActivityIndicator];
     [self dismissViewControllerAnimated:TRUE completion:nil];
 }
+
+/*
+-(void)dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion
+{
+    PU_METHOD_LOG
+    
+    if(self.presentedViewController)
+        [super dismissViewControllerAnimated:flag completion:completion];
+}
+
+- (UIViewController *)presentingViewController {
+    
+    // Avoiding iOS bug. UIWebView with file input doesn't work in modal view controller
+    
+    if (_loadingFileExplorer) {
+        return nil;
+    } else {
+        return [super presentingViewController];
+    }
+}
+
+- (void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion {
+    
+    // Avoiding iOS bug. UIWebView with file input doesn't work in modal view controller
+    
+    if ([viewControllerToPresent isKindOfClass:[UIDocumentMenuViewController class]]
+        ||[viewControllerToPresent isKindOfClass:[UIImagePickerController class]]) {
+        _loadingFileExplorer = YES;
+    }
+    
+    [super presentViewController:viewControllerToPresent animated:flag completion:completion];
+}
+
+- (void)trueDismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion {
+    
+    // Avoiding iOS bug. UIWebView with file input doesn't work in modal view controller
+    
+    _loadingFileExplorer = NO;
+    [self dismissViewControllerAnimated:flag completion:completion];
+}
+*/
 
 @end

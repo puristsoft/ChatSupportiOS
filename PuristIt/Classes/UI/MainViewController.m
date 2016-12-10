@@ -180,7 +180,11 @@
     
     WebViewController *webViewController = [[WebViewController alloc] init];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:webViewController];
-    [self presentViewController:navController animated:TRUE completion:nil];
+    //[self presentViewController:navController animated:TRUE completion:nil];
+    
+#warning http://stackoverflow.com/questions/25942676/ios-8-sdk-modal-uiwebview-and-camera-image-picker
+    self.view.window.rootViewController = navController;
+    
     
     NSString *pushid = @"";
     if([[PushHandler shared] getPushRegistrationStatus] == kPushRegistered)
